@@ -8,7 +8,7 @@
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="demovideo.mp4" />
+    <None Remove="demo.gif" />
     <None Remove="README.md" />
   </ItemGroup>
 
