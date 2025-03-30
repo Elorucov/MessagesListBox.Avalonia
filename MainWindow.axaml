@@ -1,0 +1,30 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:MessagesListBoxDemo.ViewModels"
+        xmlns:ctrls="using:MessagesListBoxDemo.Controls"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="MessagesListBoxDemo.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="MessagesListBoxDemo" Width="1024" Height="640">
+  <Grid ColumnDefinitions="320 *">
+    <ListBox x:Name="ChatsList" ItemsSource="{Binding Chats, Mode=OneWay}" SelectedItem="{Binding SelectedChat, Mode=TwoWay}" BorderThickness="0,0,1,0" BorderBrush="#7f7f7f7f"/>
+    <Grid Grid.Column="1" DataContext="{Binding SelectedChat, Mode=OneWay}">
+      <Grid x:Name="ChatsViewLayoutRoot" x:DataType="vm:ChatViewModel" DataContextChanged="ChatChanged">
+        <ctrls:MessagesListBox x:Name="MessagesList" ItemsSource="{Binding Messages}" BorderThickness="0">
+          <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+              <StackPanel/>
+            </ItemsPanelTemplate>
+          </ListBox.ItemsPanel>
+          <ListBox.ItemTemplate>
+            <DataTemplate x:DataType="vm:MessageViewModel">
+              <Border DataContextChanged="MessageChanged"/>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ctrls:MessagesListBox>
+      </Grid>
+    </Grid>
+  </Grid>
+</Window>
